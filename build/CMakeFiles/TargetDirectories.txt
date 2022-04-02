@@ -1,0 +1,3 @@
+C:/Users/Денис/Desktop/programming/Graphics/OpenGL/build/CMakeFiles/OpenGL.dir
+C:/Users/Денис/Desktop/programming/Graphics/OpenGL/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/Денис/Desktop/programming/Graphics/OpenGL/build/CMakeFiles/ZERO_CHECK.dir
