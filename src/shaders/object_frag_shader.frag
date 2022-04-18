@@ -20,7 +20,7 @@ void main()
     float diffuse_coef = max(dot(norm, light_direction), 0.0);
     vec3 diffuse = diffuse_coef * light_color;
 
-    float specular_strength = 0.5;
+    float specular_strength = 1.0;
     vec3 view_direction = normalize(view_position - frag_position);
     vec3 reflected_light_direction = reflect(-light_direction, norm);
     float specular_coef = pow(max(dot(view_direction, reflected_light_direction), 0.0), 32);
