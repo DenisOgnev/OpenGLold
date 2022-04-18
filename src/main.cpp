@@ -21,7 +21,7 @@ bool first_mouse = true;
 float delta_time = 0.0f;
 float last_frame = 0.0f;
 
-glm::vec3 light_pos(1.2f, 3.0f, 0.0f);
+glm::vec3 light_pos(1.2f, 0.0f, 2.0f);
 
 void input_process(GLFWwindow* window)
 {
@@ -205,7 +205,7 @@ int main()
         float radius = 1.5f;
         float pos_x = sinf(current_time) * radius;
         float pos_z = cosf(current_time) * radius;
-        //light_pos = glm::vec3(pos_x, light_pos.y, pos_z);
+        light_pos = glm::vec3(pos_x, light_pos.y, pos_z);
         
         object_shader.use();
 
