@@ -21,7 +21,7 @@ bool first_mouse = true;
 float delta_time = 0.0f;
 float last_frame = 0.0f;
 
-glm::vec3 light_pos(1.2f, 0.0f, 2.0f);
+glm::vec3 light_pos(1.2f, 1.0f, 2.0f);
 
 void input_process(GLFWwindow* window)
 {
@@ -189,7 +189,6 @@ int main()
     glBindVertexArray(0);
 
 
-
     while (!glfwWindowShouldClose(window))
     {
         float current_frame = static_cast<float>(glfwGetTime());
@@ -205,7 +204,7 @@ int main()
         float radius = 1.5f;
         float pos_x = sinf(current_time) * radius;
         float pos_z = cosf(current_time) * radius;
-        light_pos = glm::vec3(pos_x, light_pos.y, pos_z);
+        //light_pos = glm::vec3(pos_x, light_pos.y, pos_z);
         
         object_shader.use();
 
@@ -219,9 +218,13 @@ int main()
         object_shader.set_mat3("normal_matrix", normal_matrix);
 
         object_shader.set_vec3("light_color", glm::vec3(1.0f, 1.0f, 1.0f));
-        object_shader.set_vec3("object_color", glm::vec3(1.0f, 0.5f, 0.31f));
-        object_shader.set_vec3("light_position", glm::vec3(model * glm::vec4(light_pos, 1.0f)));
+        object_shader.set_vec3("light_position", light_pos);
         object_shader.set_vec3("view_position", camera.position);
+
+        object_shader.set_vec3("material.ambient", 1.0f, 0.5f, 0.31f);
+        object_shader.set_vec3("material.diffuse", 1.0f, 0.5f, 0.31f);
+        object_shader.set_vec3("material.specular", 0.5f, 0.5f, 0.5f);
+        object_shader.set_float("material.shininnes", 32.0f);
 
         glBindVertexArray(VAO);
         glDrawArrays(GL_TRIANGLES, 0, 36);
