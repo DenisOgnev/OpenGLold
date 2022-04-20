@@ -200,7 +200,7 @@ int main()
         glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        float current_time = current_frame / 4.0f;
+        float current_time = static_cast<float>(glfwGetTime()) / 2.0f;
         float radius = 1.5f;
         float pos_x = sinf(current_time) * radius;
         float pos_z = cosf(current_time) * radius;
@@ -217,14 +217,22 @@ int main()
         object_shader.set_mat4("projection", projection);
         object_shader.set_mat3("normal_matrix", normal_matrix);
 
-        object_shader.set_vec3("light_color", glm::vec3(1.0f, 1.0f, 1.0f));
-        object_shader.set_vec3("light_position", light_pos);
         object_shader.set_vec3("view_position", camera.position);
 
-        object_shader.set_vec3("material.ambient", 1.0f, 0.5f, 0.31f);
-        object_shader.set_vec3("material.diffuse", 1.0f, 0.5f, 0.31f);
-        object_shader.set_vec3("material.specular", 0.5f, 0.5f, 0.5f);
-        object_shader.set_float("material.shininnes", 32.0f);
+        object_shader.set_vec3("material.ambient", 0.0215f, 0.1745f, 0.0215f);
+        object_shader.set_vec3("material.diffuse", 0.07568f, 0.61424f, 0.07568f);
+        object_shader.set_vec3("material.specular", 0.633f, 0.727811f, 0.633f);
+        object_shader.set_float("material.shininess", 76.8f);
+        // object_shader.set_vec3("material.ambient", 0.0f, 0.1f, 0.06f);
+        // object_shader.set_vec3("material.diffuse", 0.0f, 0.50980392f, 0.50980392f);
+        // object_shader.set_vec3("material.specular", 0.50196078f, 0.50196078f, 0.50196078f);
+        // object_shader.set_float("material.shininess", 32.0f);
+
+
+        object_shader.set_vec3("light.position", light_pos);
+        object_shader.set_vec3("light.ambient", 1.0f, 1.0f, 1.0f);
+        object_shader.set_vec3("light.diffuse", 1.0f, 1.0f, 1.0f);
+        object_shader.set_vec3("light.specular", 1.0f, 1.0f, 1.0f);
 
         glBindVertexArray(VAO);
         glDrawArrays(GL_TRIANGLES, 0, 36);
